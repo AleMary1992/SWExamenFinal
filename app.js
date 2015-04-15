@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var crypto = require("crypto");
-var cuentaAlumno = "";
+var cuentaAlumno = "1515199300091";
 
 
 
@@ -26,7 +26,7 @@ function app(db){
   app.use(express.static(path.join(__dirname, 'public')));
   app.use(function(req, res, next){res.locals.stdhash = crypto.createHash('md5').update(cuentaAlumno).digest('hex');next()});
   var routes = require('./routes/index');
-  app.use('/', routes);
+  app.use('/dataset', routes);
 
   var api = require('./routes/api.js')(db);
   app.use('/api', api);
